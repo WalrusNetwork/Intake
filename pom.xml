@@ -13,23 +13,19 @@
   </modules>
   <repositories>
     <repository>
-      <id>ashcon-releases</id>
-      <url>https://repo.ashcon.app/nexus/content/repositories/releases</url>
-    </repository>
-    <repository>
-      <id>ashcon-snapshots</id>
-      <url>https://repo.ashcon.app/nexus/content/repositories/snapshots</url>
+      <id>stratus-public</id>
+      <url>https://repo.stratus.network/repository/maven-public/</url>
     </repository>
   </repositories>
   <distributionManagement>
-    <repository>
-      <id>ashcon-releases</id>
-      <url>https://repo.ashcon.app/nexus/content/repositories/releases</url>
-    </repository>
     <snapshotRepository>
-      <id>ashcon-snapshots</id>
-      <url>https://repo.ashcon.app/nexus/content/repositories/snapshots</url>
+      <id>stratus-public</id>
+      <url>https://repo.stratus.network/repository/maven-public/</url>
     </snapshotRepository>
+    <repository>
+      <id>stratus-public</id>
+      <url>https://repo.stratus.network/repository/maven-public/</url>
+    </repository>
   </distributionManagement>
   <build>
     <sourceDirectory>${project.basedir}/src/main/java/</sourceDirectory>
