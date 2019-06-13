@@ -43,12 +43,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import javax.annotation.Nullable;
 
 /**
  * A simple implementation of {@link Dispatcher}.
  */
 public class SimpleDispatcher implements Dispatcher, Lockable {
 
+    private @Nullable CommandMapping defaultCommand = null;
     private final Map<String, CommandMapping> commands = new HashMap<>();
     private volatile boolean locked = false;
     private Description description;
@@ -70,6 +72,11 @@ public class SimpleDispatcher implements Dispatcher, Lockable {
         }
 
         CommandMapping mapping = new ImmutableCommandMapping(callable, alias);
+
+        if (alias.length == 0) {
+            this.defaultCommand = mapping;
+            return;
+        }
 
         // Check for replacements
         for (String a : alias) {
@@ -126,35 +133,33 @@ public class SimpleDispatcher implements Dispatcher, Lockable {
         String[] split = CommandContext.split(arguments);
         Set<String> aliases = getPrimaryAliases();
 
+        CommandMapping mapping = null;
+        String subArguments = "";
+        List<String> subParents = parentCommands;
+
         if (aliases.isEmpty()) {
             throw new ProvisionException("There are no sub-commands for " + parentCommands);
         }
-        else if (split.length > 0) {
+        else if (split.length > 0 && !split[0].isEmpty()) {
             String subCommand = split[0];
-            String subArguments = Joiner.on(" ").join(Arrays.copyOfRange(split, 1, split.length));
-            List<String> subParents = ImmutableList.<String>builder().addAll(parentCommands).add(subCommand).build();
-            CommandMapping mapping = get(subCommand);
+            subArguments = Joiner.on(" ").join(Arrays.copyOfRange(split, 1, split.length));
+            subParents = ImmutableList.<String>builder().addAll(parentCommands).add(subCommand).build();
+            mapping = get(subCommand);
+        } else if (defaultCommand != null) {
+            mapping = defaultCommand;
+        }
 
-            if (mapping != null) {
-                try {
-                    mapping.getCallable().call(subArguments, namespace, subParents);
-                }
-                catch (AuthorizationException e) {
-                    throw e;
-                }
-                catch (CommandException e) {
-                    throw e;
-                }
-                catch (InvocationCommandException e) {
-                    throw e;
-                }
-                catch (Throwable t) {
-                    throw new InvocationCommandException(t);
-                }
-
-                return true;
+        if (mapping != null) {
+            try {
+                mapping.getCallable().call(subArguments, namespace, subParents);
+            }
+            catch (AuthorizationException | InvocationCommandException | CommandException e) {
+                throw e;
+            } catch (Throwable t) {
+                throw new InvocationCommandException(t);
             }
 
+            return true;
         }
 
         throw new InvalidUsageException(null, this, parentCommands, true);
