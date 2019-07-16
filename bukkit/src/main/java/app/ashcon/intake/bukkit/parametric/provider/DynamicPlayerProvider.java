@@ -5,7 +5,6 @@ import app.ashcon.intake.argument.CommandArgs;
 import app.ashcon.intake.argument.Namespace;
 import app.ashcon.intake.bukkit.parametric.Type;
 import app.ashcon.intake.bukkit.parametric.annotation.Fallback;
-import app.ashcon.intake.bukkit.util.BukkitUtil;
 import app.ashcon.intake.parametric.ProvisionException;
 import java.lang.annotation.Annotation;
 import java.util.List;
@@ -32,7 +31,7 @@ public class DynamicPlayerProvider implements BukkitProvider<Player> {
         String query = null;
         if (args.hasNext()) {
             query = args.next();
-            final Player player = BukkitUtil.getPlayer(query, sender);
+            final Player player = Bukkit.getPlayer(query, sender);
             if (player != null) {
                 return player;
             }
@@ -57,7 +56,7 @@ public class DynamicPlayerProvider implements BukkitProvider<Player> {
                                        List<? extends Annotation> mods) {
         return Bukkit.getOnlinePlayers()
                    .stream()
-                   .map(player -> BukkitUtil.getPlayerName(player, sender))
+                   .map(player -> player.getName(sender))
                    .filter(name -> name.toLowerCase().startsWith(prefix.toLowerCase()))
                    .sorted()
                    .collect(Collectors.toList());
