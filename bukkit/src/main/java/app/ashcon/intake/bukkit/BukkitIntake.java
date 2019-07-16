@@ -6,7 +6,7 @@ import app.ashcon.intake.InvocationCommandException;
 import app.ashcon.intake.argument.Namespace;
 import app.ashcon.intake.bukkit.command.BukkitCommand;
 import app.ashcon.intake.bukkit.command.BukkitHelpTopic;
-import app.ashcon.intake.bukkit.exception.TranslatableCommandException;
+import app.ashcon.intake.exception.TranslatableCommandException;
 import app.ashcon.intake.dispatcher.Dispatcher;
 import app.ashcon.intake.dispatcher.Lockable;
 import app.ashcon.intake.fluent.CommandGraph;

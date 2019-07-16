@@ -1,7 +1,7 @@
-package app.ashcon.intake.bukkit.exception;
+package app.ashcon.intake.exception;
 
 import app.ashcon.intake.CommandException;
-import network.stratus.sportpaper.api.text.PersonalizedComponent;
+import network.stratus.common.text.PersonalizedComponent;
 
 /**
  * A command exception that can be translated later on to be sent to players.
