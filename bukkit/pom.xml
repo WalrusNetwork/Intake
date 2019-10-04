@@ -18,12 +18,12 @@
       <version>1.0-SNAPSHOT</version>
     </dependency>
     <dependency>
-      <groupId>network.stratus</groupId>
+      <groupId>network.walrus</groupId>
       <artifactId>sportpaper-api</artifactId>
       <version>1.8.8-R0.1-SNAPSHOT</version>
     </dependency>
     <dependency>
-      <groupId>network.stratus</groupId>
+      <groupId>network.walrus</groupId>
       <artifactId>sportpaper</artifactId>
       <version>1.8.8-R0.1-SNAPSHOT</version>
     </dependency>

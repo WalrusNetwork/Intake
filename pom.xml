@@ -14,18 +14,18 @@
   </modules>
   <repositories>
     <repository>
-      <id>stratus-public</id>
-      <url>https://repo.stratus.network/repository/maven-public/</url>
+      <id>walrus-public</id>
+      <url>https://maven-public.walrus.network</url>
     </repository>
   </repositories>
   <distributionManagement>
     <snapshotRepository>
-      <id>stratus-public</id>
-      <url>https://repo.stratus.network/repository/maven-public/</url>
+      <id>walrus-public</id>
+      <url>https://maven-public.walrus.network</url>
     </snapshotRepository>
     <repository>
-      <id>stratus-public</id>
-      <url>https://repo.stratus.network/repository/maven-public/</url>
+      <id>walrus-public</id>
+      <url>https://maven-public.walrus.network</url>
     </repository>
   </distributionManagement>
   <build>
