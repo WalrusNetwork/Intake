@@ -1,0 +1,24 @@
+variables:
+  MAVEN_CLI_OPTS: "-s .m2/settings.xml --batch-mode"
+stages:
+  - maven
+  - deploy
+
+maven:
+  image: maven:3.6.1-jdk-8-slim
+  stage: maven
+  script:
+    - mvn $MAVEN_CLI_OPTS compile
+    - mvn $MAVEN_CLI_OPTS deploy
+  only:
+    - master
+  retry:
+    max: 2
+    when: stuck_or_timeout_failure
+
+trigger_downstream:
+  image: maven:3.6.1-jdk-8-slim
+  stage: deploy
+  script:
+    # Walrus
+    - curl --request POST --form "token=$CI_JOB_TOKEN" --form ref=master https://gitlab.com/api/v4/projects/14582879/trigger/pipeline
