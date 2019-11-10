@@ -1,6 +1,5 @@
 package app.ashcon.intake.discord;
 
-import app.ashcon.intake.CommandException;
 import app.ashcon.intake.CommandMapping;
 import app.ashcon.intake.InvalidUsageException;
 import app.ashcon.intake.InvocationCommandException;
@@ -11,7 +10,6 @@ import app.ashcon.intake.dispatcher.Dispatcher;
 import app.ashcon.intake.dispatcher.Lockable;
 import app.ashcon.intake.fluent.CommandGraph;
 import app.ashcon.intake.util.auth.AuthorizationException;
-import app.ashcon.intake.util.auth.Authorizer;
 import com.google.common.base.Joiner;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
@@ -21,9 +19,7 @@ import java.util.Collection;
 import java.util.List;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Member;
-import net.dv8tion.jda.api.entities.MessageChannel;
 import net.dv8tion.jda.api.entities.Role;
-import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 /** Omnibus API that allows implementors to register commands. */
@@ -46,7 +42,8 @@ public class DiscordIntake {
     commandGraph
         .getBuilder()
         .setAuthorizer(
-            (namespace, permission) -> checkPermission(namespace.need(Member.class), permission));
+            (namespace, permission) -> checkPermission(
+                namespace.need(GuildMessageReceivedEvent.class).getMember(), permission));
     commandGraph.getRootDispatcherNode().registerCommands(new HelpCommand(prefix, commandGraph.getRootDispatcherNode().getDispatcher().getCommands()));
     this.commandGraph = commandGraph;
     this.permissions = permissions;
