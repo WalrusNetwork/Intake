@@ -112,6 +112,7 @@ public class DiscordIntake {
     } catch (Exception e) {
       event.getChannel().sendMessage(
           new EmbedBuilder().setColor(Color.RED).setDescription(e.getMessage()).build()).queue();
+      e.printStackTrace();
     }
   }
 
