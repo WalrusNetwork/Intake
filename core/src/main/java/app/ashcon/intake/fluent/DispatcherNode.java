@@ -54,6 +54,16 @@ public class DispatcherNode extends AbstractDispatcherNode {
     }
 
     /**
+     * Helper method for {@link #registerCommands(Object)} to register multiple objects at once.
+     */
+    public AbstractDispatcherNode registerCommands(Object... objects) {
+        for (Object object : objects) {
+          registerCommands(object);
+        }
+        return this;
+    }
+
+    /**
      * Create a new command that will contain sub-commands.
      *
      * <p>The object returned by this method can be used to add sub-commands. To
