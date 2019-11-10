@@ -11,11 +11,25 @@
     <module>core</module>
     <module>bukkit</module>
     <module>bungee</module>
+    <module>discord</module>
   </modules>
   <repositories>
     <repository>
       <id>walrus-public</id>
       <url>https://maven-public.walrus.network</url>
+    </repository>
+    <repository>
+      <id>jcenter</id>
+      <url>http://jcenter.bintray.com</url>
+      <snapshots>
+        <enabled>true</enabled>
+        <updatePolicy>never</updatePolicy>
+        <checksumPolicy>warn</checksumPolicy>
+      </snapshots>
+      <releases>
+        <enabled>true</enabled>
+        <checksumPolicy>warn</checksumPolicy>
+      </releases>
     </repository>
   </repositories>
   <distributionManagement>
