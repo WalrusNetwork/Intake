@@ -1,16 +1,18 @@
-package app.ashcon.intake.discord.parametric.provider;
+package app.ashcon.intake.discord.parametric.provider.member;
 
 import app.ashcon.intake.argument.CommandArgs;
+import app.ashcon.intake.discord.parametric.provider.DiscordProvider;
 import app.ashcon.intake.parametric.ProvisionException;
 import java.lang.annotation.Annotation;
 import java.util.List;
 import javax.annotation.Nullable;
 import net.dv8tion.jda.api.entities.Member;
-import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
-/** Provides the {@link Member} of the command. */
-public class MemberProvider implements DiscordProvider<Member> {
+/**
+ * Provides the {@link Member} who executed the command.
+ */
+public class ProvidedMemberProvider implements DiscordProvider<Member> {
 
   @Override
   public boolean isProvided() {
@@ -19,7 +21,8 @@ public class MemberProvider implements DiscordProvider<Member> {
 
   @Nullable
   @Override
-  public Member get(GuildMessageReceivedEvent event, CommandArgs args, List<? extends Annotation> mods)
+  public Member get(GuildMessageReceivedEvent event, CommandArgs args,
+      List<? extends Annotation> mods)
       throws ProvisionException {
     return event.getMember();
   }
