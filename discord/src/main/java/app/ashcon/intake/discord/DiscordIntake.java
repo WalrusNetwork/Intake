@@ -13,10 +13,10 @@ import app.ashcon.intake.util.auth.AuthorizationException;
 import com.google.common.base.Joiner;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
-import com.google.common.collect.Multimap;
 import java.awt.Color;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.Role;
@@ -27,7 +27,7 @@ public class DiscordIntake {
 
   private final String prefix;
   private final CommandGraph commandGraph;
-  private final Multimap<Long, String> permissions;
+  private final Map<Long, Collection<String>> permissions;
   private final List<CommandMapping> commands = Lists.newArrayList();
 
   /**
@@ -35,7 +35,7 @@ public class DiscordIntake {
    *
    * @param commandGraph A {@link CommandGraph} instance
    */
-  public DiscordIntake(String prefix, BasicDiscordCommandGraph commandGraph, Multimap<Long, String> permissions) {
+  public DiscordIntake(String prefix, BasicDiscordCommandGraph commandGraph, Map<Long, Collection<String>> permissions) {
     Preconditions.checkNotNull(commandGraph, "Command graph can not be null");
 
     this.prefix = prefix;
