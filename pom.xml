@@ -16,7 +16,7 @@
   <repositories>
     <repository>
       <id>walrus-public</id>
-      <url>https://maven-public.walrus.network</url>
+      <url>https://maven.walrus.gg/repository/walrus-public/</url>
     </repository>
     <repository>
       <id>jcenter</id>
@@ -35,11 +35,11 @@
   <distributionManagement>
     <snapshotRepository>
       <id>walrus-public</id>
-      <url>https://maven-public.walrus.network</url>
+      <url>https://maven.walrus.gg/repository/walrus-public/</url>
     </snapshotRepository>
     <repository>
       <id>walrus-public</id>
-      <url>https://maven-public.walrus.network</url>
+      <url>https://maven.walrus.gg/repository/walrus-public/</url>
     </repository>
   </distributionManagement>
   <build>
