@@ -15,8 +15,8 @@
   </modules>
   <repositories>
     <repository>
-      <id>walrus-public</id>
-      <url>https://maven.walrus.gg/repository/walrus-public/</url>
+      <id>github</id>
+      <url>https://maven.pkg.github.com/WalrusNetwork/Tusk</url>
     </repository>
     <repository>
       <id>jcenter</id>
@@ -34,12 +34,12 @@
   </repositories>
   <distributionManagement>
     <snapshotRepository>
-      <id>walrus-public</id>
-      <url>https://maven.walrus.gg/repository/walrus-public/</url>
+      <id>github</id>
+      <url>https://maven.pkg.github.com/WalrusNetwork/Tusk</url>
     </snapshotRepository>
     <repository>
-      <id>walrus-public</id>
-      <url>https://maven.walrus.gg/repository/walrus-public/</url>
+      <id>github</id>
+      <url>https://maven.pkg.github.com/WalrusNetwork/Tusk</url>
     </repository>
   </distributionManagement>
   <build>
